@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Hi, I'm HM Tejaswini 👋</h1>
+        <p class=""subtitle"><span id="typing"></span></p>
+
+        <div class="card">
+            <h2>About Me</h2>
+            <p>I am passionate about web development and building modern websites.</p>
+        </div>
+
+        <div class="card">
+            <h2>Skills</h2>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Projects</h2>
+            <p>Portfolio Website</p>
+        </div>
+
+        <div class="card">
+            <h2>Education</h2>
+            <p>B.E in Computer Science</p>
+        </div>
+
+        <div class="card">
+            <h2>Contact</h2>
+            <button>Contact Me</button>
+        </div>
+    </div>
+    <script>
+const text = ["Computer Science Student" , "Web Developer", "Learner"];
+let index = 0;
+let charIndex = 0;
+let currentText = "";
+let isDeleting = false;
+
+function type() {
+    if (index < text.length) {
+        if (!isDeleting && charIndex <= text[index].length) {
+            currentText = text[index].substring(0, charIndex++);
+        } else if (isDeleting && charIndex >= 0) {
+            currentText = text[index].substring(0, charIndex--);
+        }
+
+        document.getElementById("typing").innerHTML = currentText;
+
+        if (!isDeleting && charIndex === text[index].length) {
+            isDeleting = true;
+            setTimeout(type, 1000);
+            return;
+        }
+
+        if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            index++;
+            if (index === text.length) index = 0;
+        }
+
+        setTimeout(type, isDeleting ? 50 : 100);
+    }
+}
+
+type();
+</script>
+
+</body>
+</html>
